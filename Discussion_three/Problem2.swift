@@ -10,12 +10,12 @@ import SwiftUI
 
 //Add a textfield to the Journal View
 struct Journal: View {
-    
+    @State var text = ""
     var body: some View {
         VStack {
             ScrollView {
                 HStack(alignment: .center) {
-                    Text("Add A Text Field")
+                    TextField("Vent", text: $text)
                         .bold()
                 }
             }
@@ -30,20 +30,22 @@ struct Journal: View {
 // the view work properly
 
 struct Valentines: View {
+    @State var isShown = false
     var body: some View {
-        Heart()
-            //.sheet(isPresented: (variable right here) , content: {
-              //  Hidden()
-           // })
+        Heart(isShown: $isShown)
+            .sheet(isPresented: $isShown , content: {
+                Hidden()
+            })
     }
        
         
 //.toggle() is a modifier that changes a boolean from true to false and vice versa
     
     private struct Heart: View {
+        @Binding var isShown: Bool
         var body: some View {
             Button {
-    
+                isShown.toggle()
             } label: {
                Text("Reveal the Message")
             }
@@ -74,4 +76,5 @@ struct Valentines: View {
 
 #Preview {
     Valentines()
+    Journal()
 }

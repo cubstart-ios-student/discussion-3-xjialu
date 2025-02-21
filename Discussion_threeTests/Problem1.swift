@@ -14,10 +14,10 @@
 //As an intro to closures please make a closure that would organize people by from reverse alphabetically / numerical order
 
 func sortedOut(arry: [Int]) -> [Int] {
-    
-    
-    
-    return []
+    let arryCpy = arry.sorted(by: { (s1: Int, s2: Int) -> Bool in
+            return s1 > s2
+    })
+    return arryCpy
 }
 
 // After Richard Lyons was elected, he employed Muski Oski to help remove
@@ -45,11 +45,8 @@ class ASUC {
 // He is efficient!
 
 func OSKI(agency funding : [ASUC]) -> [ASUC] {
-    
-    
-    return []
+    return funding.filter({$0.money > 100000})
 }
-
 
 // Muski Oski wants to brag on the internet about how much money, he is saving
 // Create a function that squares the amount of money cut from each program and also
@@ -64,9 +61,14 @@ func OSKI(agency funding : [ASUC]) -> [ASUC] {
 //Also check out a reduce function too
 
 func XSKI(programs : [ASUC]) -> Int {
-    
-    
-    return 0
+    programs.map({$0.money * $0.money})
+    programs.map({
+        $0.important = false
+    })
+    let total = programs.reduce(0) {
+        $0 + $1.money
+    }
+    return total
 }
 //
 //  Problem1.swift
